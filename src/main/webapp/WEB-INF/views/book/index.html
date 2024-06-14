@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru_RU" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All employees</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid px-4 p-3">
+    <div class="row gx-5">
+        <div class="col-lg-12">
+            <div class="row">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">books</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row p-3">
+                <div class="col-lg-4">
+                    <a th:href="@{book/new}" class="btn btn-success btn-sm">Create new book</a>
+                </div>
+            </div>
+
+            <div class="row p-3">
+                <div class="col-lg-12">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>author</th>
+                            <th>year</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="book : ${books}">
+                            <td th:text="${book.getId()}">value</td>
+                            <td th:text="${book.getName()}">value</td>
+                            <td th:text="${book.getAuthor()}">value</td>
+                            <td th:text="${book.getYear()}">value</td>
+                            <td>
+                                <div style="display: flex;flex-direction: row; align-items: center;">
+                                    <div style="margin-right: 10px">
+                                        <a th:href="@{/book/{id}(id=${book.getId()})}"
+                                           class="btn btn-primary btn-sm">view</a>
+                                    </div>
+                                    <div style="margin-right: 10px">
+                                        <a th:href="@{/book/{id}/edit(id=${book.getId()})}"
+                                           class="btn btn-success btn-sm">update</a>
+                                    </div>
+                                    <div>
+                                        <form th:method="DELETE" th:action="@{/book/{id}(id=${book.getId()})}">
+                                            <input type="submit" value="delete" class="btn btn-danger btn-sm">
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

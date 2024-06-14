@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new employee</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container-fluid px-4 p-3">
+    <div class="row gx-5">
+        <div class="col-lg-12">
+            <div class="row">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a th:href="@{/book}">books</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">create</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="row p-3">
+                <form th:method="POST" th:action="@{/book}" th:object="${books}">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">name</label>
+                        <input type="text" class="form-control" th:field="*{name}" id="name" aria-describedby="name1"/>
+                        <div style="color: #ff2d4b" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">value</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">year</label>
+                        <input type="text" class="form-control" th:field="*{year}" id="year" aria-describedby="year1"/>
+                        <div style="color: #ff2d4b" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">value</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">author</label>
+                        <input type="text" class="form-control" th:field="*{author}" id="author" aria-describedby="author1"/>
+                        <div style="color: #ff2d4b" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">value</div>
+                    </div>
+
+                    <input type="submit" value="Create" class="btn btn-primary"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
